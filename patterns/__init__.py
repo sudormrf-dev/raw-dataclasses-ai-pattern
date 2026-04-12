@@ -1,0 +1,55 @@
+"""Raw dataclass patterns for AI pipelines."""
+
+from .message_types import (
+    AssistantMessage,
+    ContentType,
+    ConversationTurn,
+    Message,
+    Role,
+    StreamDelta,
+    SystemMessage,
+    TextContent,
+    ToolResultContent,
+    ToolUseContent,
+    UsageMetadata,
+    UserMessage,
+)
+from .pipeline_stages import (
+    PipelineInput,
+    PipelineOutput,
+    PostprocessConfig,
+    PreprocessConfig,
+    ProcessedInput,
+    RawLLMResponse,
+    postprocess,
+    preprocess,
+)
+from .result_types import BatchResult, Err, LLMCallError, Ok, Result
+
+__all__ = [
+    "AssistantMessage",
+    "BatchResult",
+    "ContentType",
+    "ConversationTurn",
+    "Err",
+    "LLMCallError",
+    "Message",
+    "Ok",
+    "PipelineInput",
+    "PipelineOutput",
+    "PostprocessConfig",
+    "PreprocessConfig",
+    "ProcessedInput",
+    "RawLLMResponse",
+    "Result",
+    "Role",
+    "StreamDelta",
+    "SystemMessage",
+    "TextContent",
+    "ToolResultContent",
+    "ToolUseContent",
+    "UsageMetadata",
+    "UserMessage",
+    "postprocess",
+    "preprocess",
+]
