@@ -117,24 +117,30 @@ class SEOProduct:
 # ---------------------------------------------------------------------------
 
 _EXTRACTION_RESPONSES: dict[str, str] = {
-    "p001": json.dumps({
-        "name": "UltraSound Pro 3000",
-        "brand": "SonicTech",
-        "raw_price": "$149.99",
-        "features": ["Noise-cancelling", "40h battery", "Foldable", "USB-C charging"],
-    }),
-    "p002": json.dumps({
-        "name": "EcoBottle 1L",
-        "brand": "GreenSip",
-        "raw_price": "$24.95",
-        "features": ["BPA-free", "Keeps cold 24h", "Leak-proof lid", "Dishwasher safe"],
-    }),
-    "p003": json.dumps({
-        "name": "LuminaDesk LED Lamp",
-        "brand": "BrightSpace",
-        "raw_price": "$39.00",
-        "features": ["5 brightness levels", "USB port", "Touch control", "Eye-care mode"],
-    }),
+    "p001": json.dumps(
+        {
+            "name": "UltraSound Pro 3000",
+            "brand": "SonicTech",
+            "raw_price": "$149.99",
+            "features": ["Noise-cancelling", "40h battery", "Foldable", "USB-C charging"],
+        }
+    ),
+    "p002": json.dumps(
+        {
+            "name": "EcoBottle 1L",
+            "brand": "GreenSip",
+            "raw_price": "$24.95",
+            "features": ["BPA-free", "Keeps cold 24h", "Leak-proof lid", "Dishwasher safe"],
+        }
+    ),
+    "p003": json.dumps(
+        {
+            "name": "LuminaDesk LED Lamp",
+            "brand": "BrightSpace",
+            "raw_price": "$39.00",
+            "features": ["5 brightness levels", "USB port", "Touch control", "Eye-care mode"],
+        }
+    ),
 }
 
 _CLASSIFICATION_RESPONSES: dict[str, str] = {
@@ -144,27 +150,33 @@ _CLASSIFICATION_RESPONSES: dict[str, str] = {
 }
 
 _SEO_RESPONSES: dict[str, str] = {
-    "p001": json.dumps({
-        "seo_title": "SonicTech UltraSound Pro 3000 Headphones | 40h Battery",
-        "seo_description": (
-            "Experience studio-quality audio with the SonicTech UltraSound Pro 3000. "
-            "Noise-cancelling, 40-hour battery life, foldable design. Only $149.99."
-        ),
-    }),
-    "p002": json.dumps({
-        "seo_title": "GreenSip EcoBottle 1L – BPA-Free Insulated Water Bottle",
-        "seo_description": (
-            "Stay hydrated sustainably with the GreenSip EcoBottle. "
-            "BPA-free, keeps drinks cold for 24h, leak-proof. Just $24.95."
-        ),
-    }),
-    "p003": json.dumps({
-        "seo_title": "BrightSpace LuminaDesk LED Lamp | 5 Brightness Levels",
-        "seo_description": (
-            "Illuminate your workspace with the BrightSpace LuminaDesk LED Lamp. "
-            "Touch control, USB charging port, eye-care mode. $39.00."
-        ),
-    }),
+    "p001": json.dumps(
+        {
+            "seo_title": "SonicTech UltraSound Pro 3000 Headphones | 40h Battery",
+            "seo_description": (
+                "Experience studio-quality audio with the SonicTech UltraSound Pro 3000. "
+                "Noise-cancelling, 40-hour battery life, foldable design. Only $149.99."
+            ),
+        }
+    ),
+    "p002": json.dumps(
+        {
+            "seo_title": "GreenSip EcoBottle 1L – BPA-Free Insulated Water Bottle",
+            "seo_description": (
+                "Stay hydrated sustainably with the GreenSip EcoBottle. "
+                "BPA-free, keeps drinks cold for 24h, leak-proof. Just $24.95."
+            ),
+        }
+    ),
+    "p003": json.dumps(
+        {
+            "seo_title": "BrightSpace LuminaDesk LED Lamp | 5 Brightness Levels",
+            "seo_description": (
+                "Illuminate your workspace with the BrightSpace LuminaDesk LED Lamp. "
+                "Touch control, USB charging port, eye-care mode. $39.00."
+            ),
+        }
+    ),
 }
 
 

@@ -115,7 +115,9 @@ class TestPostprocess:
 
     def test_usage_populated(self):
         config = PostprocessConfig()
-        resp = RawLLMResponse(content="OK", stop_reason="end_turn", input_tokens=200, output_tokens=30)
+        resp = RawLLMResponse(
+            content="OK", stop_reason="end_turn", input_tokens=200, output_tokens=30
+        )
         output = postprocess(resp, config, time.monotonic())
         assert output.usage["input_tokens"] == 200
         assert output.usage["output_tokens"] == 30

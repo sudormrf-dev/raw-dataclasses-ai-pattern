@@ -242,13 +242,15 @@ def main() -> None:
     print(f"  {header_row}")
     print(f"  {sep}")
     for r in results:
-        row = "  ".join([
-            r.variant.ljust(col_w[0]),
-            f"{r.create_ms:.2f}".rjust(col_w[1]),
-            f"{r.access_ms:.2f}".rjust(col_w[2]),
-            str(r.size_bytes).rjust(col_w[3]),
-            r.note.ljust(col_w[4]),
-        ])
+        row = "  ".join(
+            [
+                r.variant.ljust(col_w[0]),
+                f"{r.create_ms:.2f}".rjust(col_w[1]),
+                f"{r.access_ms:.2f}".rjust(col_w[2]),
+                str(r.size_bytes).rjust(col_w[3]),
+                r.note.ljust(col_w[4]),
+            ]
+        )
         print(f"  {row}")
 
     # ── Memory savings ───────────────────────────────────────────────────────

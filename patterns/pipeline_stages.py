@@ -153,6 +153,7 @@ def _extract_json_from_text(text: str) -> dict[str, Any] | list[Any] | None:
     Returns:
         Parsed JSON value, or None if no valid JSON found.
     """
+
     def _cast(v: Any) -> dict[str, Any] | list[Any] | None:
         if isinstance(v, (dict, list)):
             return v
@@ -225,7 +226,7 @@ def preprocess(inp: PipelineInput, config: PreprocessConfig) -> ProcessedInput:
     user_text = inp.user_text
     if config.prepend_context and inp.context:
         context_lines = "\n".join(
-            f"{k}: {str(v)[:config.max_context_chars]}" for k, v in inp.context.items()
+            f"{k}: {str(v)[: config.max_context_chars]}" for k, v in inp.context.items()
         )
         user_text = f"Context:\n{context_lines}\n\n{inp.user_text}"
 

@@ -25,10 +25,7 @@ from dataclasses import dataclass, field
 
 def _count_non_blank(code: str) -> int:
     """Return the number of non-blank, non-comment lines in a code string."""
-    return sum(
-        1 for line in code.splitlines()
-        if line.strip() and not line.strip().startswith("#")
-    )
+    return sum(1 for line in code.splitlines() if line.strip() and not line.strip().startswith("#"))
 
 
 def _header(title: str) -> None:
@@ -300,10 +297,22 @@ def run_live_demo() -> None:
     """Execute the DC-based operations and print real results."""
     store = LiveStore()
     pid = store.insert_product(
-        Product(name="UltraSound Pro 3000", brand="SonicTech", category="Electronics", price=149.99, in_stock=True)
+        Product(
+            name="UltraSound Pro 3000",
+            brand="SonicTech",
+            category="Electronics",
+            price=149.99,
+            in_stock=True,
+        )
     )
     store.insert_product(
-        Product(name="EcoBottle 1L", brand="GreenSip", category="Sports & Outdoors", price=24.95, in_stock=True)
+        Product(
+            name="EcoBottle 1L",
+            brand="GreenSip",
+            category="Sports & Outdoors",
+            price=24.95,
+            in_stock=True,
+        )
     )
     store.insert_review(product_id=pid, rating=5)
     store.insert_review(product_id=pid, rating=4)
@@ -376,7 +385,9 @@ def main() -> None:
     print(f"  {'Operation':<30} {'SQLAlchemy':>12} {'Raw DC':>8} {'Ratio':>7} {'Winner':>10}")
     print(f"  {'-' * 68}")
     for r in rows:
-        print(f"  {r.operation:<30} {r.sqla_lines:>12} {r.dc_lines:>8} {r.ratio:>6.1f}x {r.simpler:>10}")
+        print(
+            f"  {r.operation:<30} {r.sqla_lines:>12} {r.dc_lines:>8} {r.ratio:>6.1f}x {r.simpler:>10}"
+        )
     print(f"  {'-' * 68}")
     print(f"  {'TOTAL':<30} {total_sqla:>12} {total_dc:>8} {overall_ratio:>6.1f}x {'DC':>10}")
 
