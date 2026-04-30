@@ -26,7 +26,6 @@ from patterns.pipeline_stages import (
 )
 from patterns.result_types import Err, Ok
 
-
 # ---------------------------------------------------------------------------
 # Domain dataclasses
 # ---------------------------------------------------------------------------
@@ -161,7 +160,7 @@ _SEO_RESPONSES: dict[str, str] = {
     ),
     "p002": json.dumps(
         {
-            "seo_title": "GreenSip EcoBottle 1L – BPA-Free Insulated Water Bottle",
+            "seo_title": "GreenSip EcoBottle 1L - BPA-Free Insulated Water Bottle",
             "seo_description": (
                 "Stay hydrated sustainably with the GreenSip EcoBottle. "
                 "BPA-free, keeps drinks cold for 24h, leak-proof. Just $24.95."
@@ -390,7 +389,7 @@ class ProductStore:
         cols = [d[0] for d in cursor.description]
         rows = cursor.fetchall()
         return [
-            SEOProduct(**dict(zip(cols, row, strict=True)))  # type: ignore[arg-type]
+            SEOProduct(**dict(zip(cols, row, strict=True)))
             for row in rows
         ]
 
@@ -406,7 +405,7 @@ class ProductStore:
         )
         cols = [d[0] for d in cursor.description]
         return [
-            SEOProduct(**dict(zip(cols, row, strict=True)))  # type: ignore[arg-type]
+            SEOProduct(**dict(zip(cols, row, strict=True)))
             for row in cursor.fetchall()
         ]
 
@@ -446,28 +445,28 @@ def run_ecommerce_pipeline(raw_products: list[RawProduct], store: ProductStore) 
     stats = PipelineStats(total=len(raw_products))
 
     for raw in raw_products:
-        # Stage 1 – Extract
+        # Stage 1 - Extract
         extract_result = stage_extract(raw)
         if extract_result.is_err:
             stats.failed += 1
             stats.errors.append(str(extract_result.error))  # type: ignore[union-attr]
             continue
 
-        # Stage 2 – Classify
+        # Stage 2 - Classify
         classify_result = stage_classify(extract_result.value)  # type: ignore[union-attr]
         if classify_result.is_err:
             stats.failed += 1
             stats.errors.append(str(classify_result.error))  # type: ignore[union-attr]
             continue
 
-        # Stage 3 – SEO
+        # Stage 3 - SEO
         seo_result = stage_generate_seo(classify_result.value)  # type: ignore[union-attr]
         if seo_result.is_err:
             stats.failed += 1
             stats.errors.append(str(seo_result.error))  # type: ignore[union-attr]
             continue
 
-        # Stage 4 – Store
+        # Stage 4 - Store
         store.upsert(seo_result.value)  # type: ignore[union-attr]
         stats.succeeded += 1
 

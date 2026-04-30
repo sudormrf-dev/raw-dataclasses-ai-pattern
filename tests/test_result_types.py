@@ -55,9 +55,9 @@ class TestErr:
 
 
 class TestBatchResult:
-    def _make_batch(self) -> BatchResult:
-        results = [Ok(value="a"), Ok(value="b"), Err(error="fail")]
-        return BatchResult(
+    def _make_batch(self) -> BatchResult[str]:
+        results: list[Ok[str] | Err[str]] = [Ok(value="a"), Ok(value="b"), Err(error="fail")]
+        return BatchResult[str](
             results=results,
             total_input_tokens=300,
             total_output_tokens=100,
@@ -76,7 +76,7 @@ class TestBatchResult:
         assert batch.success_rate == pytest.approx(2 / 3)
 
     def test_success_rate_empty(self):
-        batch = BatchResult(results=[])
+        batch = BatchResult[str](results=[])
         assert batch.success_rate == 0.0
 
     def test_values_returns_ok_values(self):

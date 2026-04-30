@@ -17,7 +17,6 @@ import sqlite3
 import textwrap
 from dataclasses import dataclass, field
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -283,7 +282,7 @@ class LiveStore:
             ("Electronics", 200),
         )
         cols = [d[0] for d in cur.description]
-        return [Product(**dict(zip(cols, row, strict=True))) for row in cur.fetchall()]  # type: ignore[arg-type]
+        return [Product(**dict(zip(cols, row, strict=True))) for row in cur.fetchall()]
 
     def top_rated_names(self, min_rating: int = 4) -> list[str]:
         cur = self.conn.execute(

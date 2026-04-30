@@ -34,7 +34,7 @@ class TestMessage:
 
     def test_text_property_from_blocks(self):
         blocks = [TextContent("part one"), TextContent("part two")]
-        msg = UserMessage(blocks)
+        msg = UserMessage(blocks)  # type: ignore[arg-type]
         assert "part one" in msg.text
         assert "part two" in msg.text
 
@@ -47,7 +47,7 @@ class TestMessage:
             TextContent("let me search"),
             ToolUseContent(id="tu_1", name="search", input={"query": "foo"}),
         ]
-        msg = AssistantMessage(blocks)
+        msg = AssistantMessage(blocks)  # type: ignore[arg-type]
         assert len(msg.tool_uses) == 1
         assert msg.tool_uses[0].name == "search"
 
@@ -59,7 +59,7 @@ class TestMessage:
 
     def test_to_api_dict_block_content(self):
         blocks = [TextContent("hi")]
-        msg = AssistantMessage(blocks)
+        msg = AssistantMessage(blocks)  # type: ignore[arg-type]
         d = msg.to_api_dict()
         assert d["role"] == "assistant"
         assert isinstance(d["content"], list)
@@ -94,6 +94,7 @@ class TestConversationTurn:
         turn = ConversationTurn()
         turn.add_user("q1")
         turn.add_assistant("a1")
+        assert turn.last_message is not None
         assert turn.last_message.role == Role.ASSISTANT
 
     def test_last_user_message(self):
@@ -101,6 +102,7 @@ class TestConversationTurn:
         turn.add_user("q1")
         turn.add_assistant("a1")
         turn.add_user("q2")
+        assert turn.last_user_message is not None
         assert turn.last_user_message.text == "q2"
 
     def test_last_assistant_message(self):
@@ -108,6 +110,7 @@ class TestConversationTurn:
         turn.add_user("q1")
         turn.add_assistant("a1")
         turn.add_user("q2")
+        assert turn.last_assistant_message is not None
         assert turn.last_assistant_message.text == "a1"
 
     def test_last_message_empty(self):

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+from typing import Any, cast
 
 from patterns.pipeline_stages import (
     PipelineInput,
@@ -64,7 +65,7 @@ class TestPreprocess:
 
 
 class TestPostprocess:
-    def _make_response(self, content: str, **kwargs: object) -> RawLLMResponse:
+    def _make_response(self, content: str, **kwargs: Any) -> RawLLMResponse:
         return RawLLMResponse(
             content=content,
             stop_reason="end_turn",
@@ -98,7 +99,8 @@ class TestPostprocess:
         resp = self._make_response('{"name": "Alice", "age": 30}')
         output = postprocess(resp, config, time.monotonic())
         assert output.parsed is not None
-        assert output.parsed["name"] == "Alice"
+        parsed = cast("dict[str, Any]", output.parsed)
+        assert parsed["name"] == "Alice"
 
     def test_json_extraction_fails_gracefully(self):
         config = PostprocessConfig(extract_json=True)
